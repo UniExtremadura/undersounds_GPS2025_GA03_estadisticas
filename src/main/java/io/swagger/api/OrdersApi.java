@@ -65,7 +65,7 @@ public interface OrdersApi {
     @RequestMapping(value = "/orders",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Order> ordersGet();
+    ResponseEntity<List<Order>> ordersGet();
 
 
     @Operation(summary = "Obtain an specific order.", description = "Devuelve un pedido concreto.", tags={ "Orders" })
