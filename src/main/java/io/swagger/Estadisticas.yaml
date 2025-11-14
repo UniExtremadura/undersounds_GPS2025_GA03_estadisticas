@@ -26,6 +26,8 @@ tags:
     description: Purchases and orders
   - name: Stats
     description: Manage statistics
+  - name: Recommendations
+    description: Manage recommendations
 
 paths:
   /orders:
@@ -88,16 +90,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    delete:
-      tags:
-        - Orders
-      summary: Delete an order.
-      parameters:
-        - name: id
-          in: query
-          required: true
-          schema:
-            type: string
+
 
       responses:
         '204':
@@ -196,7 +189,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-          
+    delete:
+      tags:
+        - Orders
+      summary: Delete an order.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string       
   /stats/artist/{id}:
     get:
       tags: [Stats]
@@ -282,7 +284,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+  /recommendations/user/{id}:
+    get:
+      tags: [Recommendations]
+      summary: Get album recommendations for a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Album recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AlbumRef"
+        "400":
+          description: Invalid user ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 
 components:
   schemas:
@@ -390,6 +423,27 @@ components:
             url: { type: string, format: uri }
             bitrate: { type: integer }
             codec: { type: string }
+    Album:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        title: { type: string }
+        description: { type: string, nullable: true }
+        releaseDate: { type: string, format: date }
+        releaseState: { type: string, enum: [draft, scheduled, published, archived] }
+        artistId: { type: string, format: uuid }
+        artist: { $ref: '#/components/schemas/ArtistRef' }´
+        labelId: { type: string, format: uuid }
+        label: { $ref: '#/components/schemas/LabelRef' }
+        price: { type: number }
+        currency: { type: string }
+        genres: { type: string }
+        tracks: 
+          type: array
+          items: { $ref: '#/components/schemas/Song' }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        coverImageUrl: { type: string, format: uri }
     AlbumRef:
       type: object
       properties:

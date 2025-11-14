@@ -55,26 +55,7 @@ public class OrdersApiController implements OrdersApi {
     }
 
     public ResponseEntity<Order> ordersDelete(
-            @NotNull @Parameter(in = ParameterIn.QUERY, description = "", required = true, schema = @Schema()) @Valid @RequestParam(value = "id", required = true) String id) {
-        // String accept = request.getHeader("Accept");
-        // if (accept != null && accept.contains("application/json")) {
-        // try {
-        // return new ResponseEntity<Order>(objectMapper.readValue("{\n \"totalAmount\"
-        // : 14.5,\n \"orderId\" : \"order001\",\n \"userId\" : \"user001\",\n
-        // \"orderDate\" : \"2025-10-07T20:50:00+02:00\",\n \"items\" : [ {\n
-        // \"unitPrice\" : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n
-        // \"type\" : \"album\",\n \"productName\" : \"Camiseta\"\n }, {\n \"unitPrice\"
-        // : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n \"type\" :
-        // \"album\",\n \"productName\" : \"Camiseta\"\n } ]\n}", Order.class),
-        // HttpStatus.NOT_IMPLEMENTED);
-        // } catch (IOException e) {
-        // log.error("Couldn't serialize response for content type application/json",
-        // e);
-        // return new ResponseEntity<Order>(HttpStatus.INTERNAL_SERVER_ERROR);
-        // }
-        // }
-
-        // return new ResponseEntity<Order>(HttpStatus.NOT_IMPLEMENTED);
+            @NotNull @Parameter(in = ParameterIn.PATH, description = "", required = true, schema = @Schema()) @Valid @PathVariable("id") String id) {
         try {
             orderService.deleteOrder(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -157,19 +138,38 @@ public class OrdersApiController implements OrdersApi {
 
     public ResponseEntity<List<Order>> ordersUserIdGet(
             @Parameter(in = ParameterIn.PATH, description = "", required = true, schema = @Schema()) @PathVariable("id") String id) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Order>>(objectMapper.readValue(
-                        "[ {\n  \"totalAmount\" : 14.5,\n  \"orderId\" : \"order001\",\n  \"userId\" : \"user001\",\n  \"orderDate\" : \"2025-10-07T20:50:00+02:00\",\n  \"items\" : [ {\n    \"unitPrice\" : 20,\n    \"quantity\" : 2,\n    \"productId\" : \"item001\",\n    \"type\" : \"album\",\n    \"productName\" : \"Camiseta\"\n  }, {\n    \"unitPrice\" : 20,\n    \"quantity\" : 2,\n    \"productId\" : \"item001\",\n    \"type\" : \"album\",\n    \"productName\" : \"Camiseta\"\n  } ]\n}, {\n  \"totalAmount\" : 14.5,\n  \"orderId\" : \"order001\",\n  \"userId\" : \"user001\",\n  \"orderDate\" : \"2025-10-07T20:50:00+02:00\",\n  \"items\" : [ {\n    \"unitPrice\" : 20,\n    \"quantity\" : 2,\n    \"productId\" : \"item001\",\n    \"type\" : \"album\",\n    \"productName\" : \"Camiseta\"\n  }, {\n    \"unitPrice\" : 20,\n    \"quantity\" : 2,\n    \"productId\" : \"item001\",\n    \"type\" : \"album\",\n    \"productName\" : \"Camiseta\"\n  } ]\n} ]",
-                        List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Order>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
+        // String accept = request.getHeader("Accept");
+        // if (accept != null && accept.contains("application/json")) {
+        // try {
+        // return new ResponseEntity<List<Order>>(objectMapper.readValue(
+        // "[ {\n \"totalAmount\" : 14.5,\n \"orderId\" : \"order001\",\n \"userId\" :
+        // \"user001\",\n \"orderDate\" : \"2025-10-07T20:50:00+02:00\",\n \"items\" : [
+        // {\n \"unitPrice\" : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n
+        // \"type\" : \"album\",\n \"productName\" : \"Camiseta\"\n }, {\n \"unitPrice\"
+        // : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n \"type\" :
+        // \"album\",\n \"productName\" : \"Camiseta\"\n } ]\n}, {\n \"totalAmount\" :
+        // 14.5,\n \"orderId\" : \"order001\",\n \"userId\" : \"user001\",\n
+        // \"orderDate\" : \"2025-10-07T20:50:00+02:00\",\n \"items\" : [ {\n
+        // \"unitPrice\" : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n
+        // \"type\" : \"album\",\n \"productName\" : \"Camiseta\"\n }, {\n \"unitPrice\"
+        // : 20,\n \"quantity\" : 2,\n \"productId\" : \"item001\",\n \"type\" :
+        // \"album\",\n \"productName\" : \"Camiseta\"\n } ]\n} ]",
+        // List.class), HttpStatus.NOT_IMPLEMENTED);
+        // } catch (IOException e) {
+        // log.error("Couldn't serialize response for content type application/json",
+        // e);
+        // return new ResponseEntity<List<Order>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        // }
+        // }
 
-        return new ResponseEntity<List<Order>>(HttpStatus.NOT_IMPLEMENTED);
+        // return new ResponseEntity<List<Order>>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            List<Order> userOrders = orderService.getOrdersByUser(id);
+            return new ResponseEntity<>(userOrders, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Error retrieving user orders", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
