@@ -23,7 +23,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 12345
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "8080:8080"
+      - "8083:8083"
 
 volumes:
   postgres_data:
