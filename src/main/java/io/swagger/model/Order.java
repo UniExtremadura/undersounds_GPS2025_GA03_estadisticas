@@ -35,7 +35,7 @@ public class Order   {
   @JsonProperty("orderId")
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
-  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
+  @JsonSetter(nulls = Nulls.SKIP)    // SKIP setting if the value is null (permite null/vacío)
   @Id
   private String orderId = null;
 

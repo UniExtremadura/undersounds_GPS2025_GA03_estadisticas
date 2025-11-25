@@ -1,6 +1,7 @@
 package io.swagger.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class OrderService {
     }
 
     public Order createOrder(Order order){
+        // Generar orderId automáticamente si no viene o está vacío
+        if(order.getOrderId() == null || order.getOrderId().isEmpty()){
+            order.setOrderId(UUID.randomUUID().toString());
+        }
         return orderRepository.save(order);
     }
 
