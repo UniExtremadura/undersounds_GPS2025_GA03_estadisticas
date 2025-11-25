@@ -2,8 +2,6 @@ package io.swagger.model;
 
 import java.time.LocalDateTime;
 
-import org.apache.tomcat.jni.Local;
-
 public class MerchItem {
     private String id;
     private String title;
