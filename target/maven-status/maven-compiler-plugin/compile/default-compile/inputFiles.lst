@@ -40,6 +40,7 @@ C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\api\StatsApiController.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\service\StatService.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\service\RecommendationService.java
+C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\model\MerchItemResponse.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\configuration\RestTemplateConfig.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\Swagger2SpringBoot.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\configuration\JacksonConfiguration.java
@@ -47,4 +48,5 @@ C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\configuration\SwaggerUiConfiguration.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\model\Stats.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\api\ApiOriginFilter.java
+C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\configuration\WebConfig.java
 C:\Users\Jorge Carrasco\Desktop\ASEE\Microservicios del Proyecto\undersounds_GPS2025_GA03_estadisticas\src\main\java\io\swagger\configuration\NotUndefined.java
