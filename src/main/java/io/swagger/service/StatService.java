@@ -47,14 +47,20 @@ public class StatService {
     List<Comment> comments = getAlbumComments(albumId);
     if (comments != null && !comments.isEmpty()) {
       BigDecimal totalRate = BigDecimal.ZERO;
+      int validRatings = 0;
       for (Comment comment : comments) {
-        totalRate = totalRate.add(BigDecimal.valueOf(comment.getRating()));
+        if (comment.getRating() != null && comment.getRating() > 0) {
+          totalRate = totalRate.add(BigDecimal.valueOf(comment.getRating()));
+          validRatings++;
+        }
       }
-      rate = totalRate.divide(
-        BigDecimal.valueOf(comments.size()),
-        2,
-        BigDecimal.ROUND_HALF_UP
-      );
+      if (validRatings > 0) {
+        rate = totalRate.divide(
+          BigDecimal.valueOf(validRatings),
+          2,
+          BigDecimal.ROUND_HALF_UP
+        );
+      }
     }
 
     // Obtención de reproducciones desde servicio de contenido
@@ -85,14 +91,20 @@ public class StatService {
     List<Comment> comments = getMerchComments(merchId);
     if (comments != null && !comments.isEmpty()) {
       BigDecimal totalRate = BigDecimal.ZERO;
+      int validRatings = 0;
       for (Comment comment : comments) {
-        totalRate = totalRate.add(BigDecimal.valueOf(comment.getRating()));
+        if (comment.getRating() != null && comment.getRating() > 0) {
+          totalRate = totalRate.add(BigDecimal.valueOf(comment.getRating()));
+          validRatings++;
+        }
       }
-      rate = totalRate.divide(
-        BigDecimal.valueOf(comments.size()),
-        2,
-        BigDecimal.ROUND_HALF_UP
-      );
+      if (validRatings > 0) {
+        rate = totalRate.divide(
+          BigDecimal.valueOf(validRatings),
+          2,
+          BigDecimal.ROUND_HALF_UP
+        );
+      }
     }
 
     stats.setMerchSales(sales);
