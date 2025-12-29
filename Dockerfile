@@ -13,6 +13,8 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Compilar el proyecto
+ARG SENTRY_AUTH_TOKEN
+ENV SENTRY_AUTH_TOKEN="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"
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Imagen final ligera
@@ -25,4 +27,4 @@ COPY --from=build /app/target/swagger-spring-1.0.0.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT [ "java", "-javaagent:sentry-opentelemetry-agent-8.28.0.jar", "-jar", "app.jar" ]

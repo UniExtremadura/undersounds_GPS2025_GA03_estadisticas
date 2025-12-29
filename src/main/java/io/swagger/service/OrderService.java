@@ -1,5 +1,6 @@
 package io.swagger.service;
 
+import io.sentry.Sentry;
 import io.swagger.model.MerchItem;
 import io.swagger.model.MerchItemResponse;
 import io.swagger.model.Order;
@@ -36,6 +37,15 @@ public class OrderService {
   }
 
   public List<Order> getAllOrders() {
+    // Código de prueba para configurar Sentry
+
+    // try {
+    //   throw new Exception("Error de prueba Sentry");
+    // } catch (Exception e) {
+    //   System.out.println("Capturado error de prueba Sentry: " + e.getMessage());
+    //   throw e;
+    // }
+
     return orderRepository.findAll();
   }
 
@@ -82,11 +92,14 @@ public class OrderService {
         Integer newStock = item.getStock() - quantity;
         Map<String, Integer> requestBody = new HashMap<>();
         requestBody.put("stock", newStock);
-        
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Map<String, Integer>> entity = new HttpEntity<>(requestBody, headers);
-        
+        HttpEntity<Map<String, Integer>> entity = new HttpEntity<>(
+          requestBody,
+          headers
+        );
+
         restTemplate.exchange(url, HttpMethod.PATCH, entity, Void.class);
       }
     } catch (Exception e) {

@@ -18,6 +18,7 @@ io\swagger\service\RecommendationService.class
 io\swagger\model\AlbumStats.class
 io\swagger\api\RecommendationsApi.class
 io\swagger\configuration\CustomInstantDeserializer$9.class
+io\swagger\advice\GlobalRestExceptionHandler.class
 io\swagger\Swagger2SpringBoot$CustomDateConfig.class
 io\swagger\model\Lyrics.class
 io\swagger\model\Album.class
